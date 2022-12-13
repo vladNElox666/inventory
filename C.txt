@@ -1,0 +1,538 @@
+using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Linq;
+using System.Net.Sockets;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Sizikov
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            num22();
+            Console.ReadLine();
+        }
+        public static void num1()
+        {
+            // num6
+            int N = int.Parse(Console.ReadLine());
+            int max = 0;
+            int a = 0;
+
+            for (max = 0; N > 0; N /= 10)
+            {
+                a = N % 10;
+                if (a > max) max = a;
+            }
+            Console.WriteLine(max);
+        }
+        public static void num2()
+        {
+            //num 2
+            int i;
+            for (i = 35; i <= 87; i++)
+            {
+
+                if ((i % 7 == 1) | (i % 7 == 2) | (i % 7 == 5))
+                    Console.WriteLine(i);
+
+            }
+
+            Console.ReadLine();
+        }
+        public static void num3()
+        {
+            //num 4
+            Console.WriteLine("введите 3х значное число");
+            int N = int.Parse(Console.ReadLine());
+            int i, b;
+            int a = 1;
+            if (N < 1000)
+            {
+                for (i = 0; N > 0; N /= 10)
+                {
+                    b = N % 10;
+                    a = a * b;
+                }
+                Console.WriteLine("произведение цифр числа");
+                Console.WriteLine(a);
+                Console.ReadLine();
+            }
+        }
+        public static void num4()
+        {
+            // num 5
+            Console.WriteLine("введите натуральное число");
+            int N = int.Parse(Console.ReadLine());
+            int i, b;
+            int sum = 0;
+
+            for (i = 0; N > 0; N /= 10)
+            {
+                b = N % 10; //это находим цифру
+                if (b % 2 == 0) sum = sum + 1;  //если цифра четная
+            }
+            Console.WriteLine("количество четных цифр числа");
+            Console.WriteLine(sum);
+        }
+        public static void num5()
+        {
+            // num 7
+            // все четырехзначные числа, сумма цифр которого равно 15
+            int i, b, N, j;
+            int sum = 0;
+
+            for (j = 1000; j <= 9999; j++)
+            {
+                N = j;
+                for (i = 0; N > 0; N /= 10)
+                {
+                    b = N % 10; //это находим цифру
+                    sum = sum + b;  //сумма цифр
+                }
+                if (sum == 15) Console.WriteLine(j);
+                sum = 0;
+            }
+            Console.ReadLine();
+        }
+        public static void num6()
+        {
+            //    num 3
+            int N = int.Parse(Console.ReadLine());
+            int result = 0;
+            for (int i = 1; i <= N; i++)
+            {
+                result += i;
+            }
+            Console.WriteLine(result);
+        }
+        public static void num7()
+        {
+            //1. даны 2 угла треугольника, определить существует такой треугольник. является он прямоугольным.
+            Console.WriteLine("Введите 1й угол треугольника в градусах");
+            int a = int.Parse(Console.ReadLine());
+            Console.WriteLine("Введите 2й угол треугольника в градусах");
+            int b = int.Parse(Console.ReadLine());
+            if (a + b < 180)
+            {
+                Console.WriteLine("треугольник существует");
+                if ((a == 90) | (b == 90)) Console.WriteLine("треугольник прямоугольный");
+                if (a + b == 90) Console.WriteLine("треугольник прямоугольный");
+            }
+            else Console.WriteLine("треугольник не существует");
+        }
+        public static void num8()
+        {
+            //2. Составить программу, которая по данному числу 1-12 выводит название соответствующего ему месяца
+            Console.WriteLine("Введите число от 1 до 12");
+            int i = int.Parse(Console.ReadLine());
+            if ((i >= 1) & (i <= 12))
+            {
+                if (i == 1) Console.WriteLine("Январь");
+                if (i == 2) Console.WriteLine("Февраль");
+                if (i == 3) Console.WriteLine("Март");
+                if (i == 4) Console.WriteLine("Апрель");
+                if (i == 5) Console.WriteLine("Май");
+                if (i == 6) Console.WriteLine("Июнь");
+                if (i == 7) Console.WriteLine("Июль");
+                if (i == 8) Console.WriteLine("Август");
+                if (i == 9) Console.WriteLine("Сентябрь");
+                if (i == 10) Console.WriteLine("Октябрь");
+                if (i == 11) Console.WriteLine("Ноябрь");
+                if (i == 12) Console.WriteLine("Декабрь");
+            }
+        }
+        public static void num9()
+        {
+            //3. Для целого числа n от 1 до 99 напечатать фразу <<Мне n лет>>, учитывая при этом что при некоторых значениях n слова <<лет>> надо заменить на слова "год" или "года". Например, 9 лет, 32 год, 71 год
+            Console.WriteLine("Введите число от 1 до 99");
+            int i = int.Parse(Console.ReadLine());
+            if ((i >= 1) & (i <= 99))
+            {
+                if (i % 10 >= 2 && i % 10 <= 4 && i / 10 != 1)
+                    Console.WriteLine("Вам " + i + " года");
+                else if (i % 10 == 1 && i / 10 != 1)
+                    Console.WriteLine("Вам " + i + " год");
+                else
+                    Console.WriteLine("Вам " + i + " лет");
+            }
+            Console.WriteLine("");
+        }
+        public static void num10()
+        {
+            //4. Даны два целых числа. Найти их среднее арифметическое и их среднее геометрическое
+            Console.WriteLine("Два целых числа");
+            Console.WriteLine("Введите первое целое число");
+            int a = int.Parse(Console.ReadLine());
+            Console.WriteLine("Введите второе целое число");
+            int b = int.Parse(Console.ReadLine());
+
+            double c;
+            c = (double)(a + b) / 2;
+            Console.WriteLine("среднее арифметическое = " + c);
+            c = Math.Sqrt(a * b);
+            Console.WriteLine("среднее геометрическое = " + c);
+        }
+        public static void num11()
+        {
+            //5. четырехзначное число, проверить читается одинаково справо налево и слева направо
+            Console.WriteLine("Введите целое четырехзначное число");
+            int n = int.Parse(Console.ReadLine());
+            if ((n >= 1000) & (n <= 9999))
+            {
+                int i, res = 0;
+                for (i = n; i > 0; i /= 10)
+                {
+                    res = res * 10 + i % 10;
+                }
+                if (n == res) Console.WriteLine("число читается одинаково слева направо и справа налево");
+            }
+            else Console.WriteLine("Вы ввели не четырехзначное число!");
+            Console.ReadLine();
+        }
+        public static void num12()
+        {
+            //6. Написать программу, которая бы по введенному номеру единицы измерения (1 – килограмм, 2 – миллиграмм, 3 – грамм, 4 – тонна, 5 – центнер) и массе M выдавала бы соответствующее значение массы в килограммах.
+            Console.WriteLine("Введите номер единицы измерения 1 – килограмм, 2 – миллиграмм, 3 – грамм, 4 – тонна, 5 – центнер");
+            int n = int.Parse(Console.ReadLine());
+            Console.WriteLine("Введите массу ");
+            int m = int.Parse(Console.ReadLine());
+            double result = 0;
+            if (n == 1) result = m;
+            if (n == 2) result = (double)m / (1000 * 1000);
+            if (n == 3) result = (double)m / (1000);
+            if (n == 4) result = m * (1000);
+            if (n == 5) result = m * (100);
+            Console.WriteLine(result + " килограмм");
+        }
+        public static void num13()
+        {
+            //7. Составить программу,позволяющую по последней цифре данного числа определить последного цифру куба этого числа.
+            Console.WriteLine("Введите произвольное число");
+            int N = int.Parse(Console.ReadLine());
+            int i, a, b, c;
+            {
+                a = N % 10;
+                b = a * a * a;
+                c = b % 10;
+            }
+            Console.WriteLine("Последней цифрой числа, возведенного в куб");
+            Console.WriteLine(c);
+            Console.ReadLine();
+        }
+        public static void num14()
+        {
+            //8. Дано двухзначное число. Определить а) какая из его цифр больше первая или вторая б) одинаковы ли его цифры
+            Console.WriteLine("Введите двухзначное число");
+            int n = int.Parse(Console.ReadLine());
+            int i, a, b;
+
+            a = n % 10;  //второе число
+            n = n / 10;
+            b = n % 10;  //первое число
+            if (a < b) Console.WriteLine("Первое число больше");
+            if (a > b) Console.WriteLine("Второе число больше");
+            if (a == b) Console.WriteLine("одинаковы");
+
+        }
+        public static void num15()
+        {
+            //9. Составить программу, позволяющую получить словесное описание школьных отметок (1 - плохо, 2 - неудовлетворительно, 3 - удовлетворительно, 4 - хорошо, 5 - отлично)
+            Console.WriteLine("Введите оценку");
+            int i = int.Parse(Console.ReadLine());
+            if ((i >= 1) & (i <= 5))
+            {
+                if (i == 1) Console.WriteLine("1 - плохо");
+                if (i == 2) Console.WriteLine("2 - неудовлетворительно");
+                if (i == 3) Console.WriteLine("3 - удовлетворительно");
+                if (i == 4) Console.WriteLine("4 - хорошо");
+                if (i == 5) Console.WriteLine("5 - отлично");
+            }
+        }
+        public static void num16()
+        {
+            //10. Написать программу, которая по вводимому числу от 1 до 11 выдает соответствующее сообщение "Привет n - классник". Например. "Привет, первоклассник" при n = 1 и т.д.
+            Console.WriteLine("Введите класс");
+            int i = int.Parse(Console.ReadLine());
+            string s = "";
+            if ((i >= 1) & (i <= 11))
+            {
+                if (i == 1) s = "перво";
+                if (i == 2) s = "второ";
+                if (i == 3) s = "трети";
+                if (i == 4) s = "четверо";
+                if (i == 5) s = "пяти";
+                if (i == 6) s = "шести";
+                if (i == 7) s = "семи";
+                if (i == 8) s = "восьми";
+                if (i == 9) s = "девяти";
+                if (i == 10) s = "десяти";
+                if (i == 11) s = "одиннадцати";
+                Console.WriteLine("Привет " + s + "классник");
+            }
+        }
+        public static void num17()
+        {
+            //1.В некоторых видах спортивных состязаний выступление каждого спортсмена независимо оценивается несколькими судьями, затем из всей совокупности оценок удаляются наиболее высокая и наиболее низкая, а для оставшихся оценок вычисляется среднее арифметическое, которое и идет в зачет спортсмену. Если наиболее высокую оценку выставило несколько судей, то из совокупности оценок удаляется только одна такая оценка; аналогично поступают с наиболее низкими оценками. Даны натуральное число n, действительные положи тельные числа а1, ..., an (n>3). Считая, что числа an, ..., an -это оценки, выставленные судьями одному из участников соревнований, определить оценку, которая пойдет в зачет этому спортсмену.
+            Console.WriteLine("Введите количество оценок (больше трех)");
+            int n = int.Parse(Console.ReadLine());
+            int i, j, count = 0;
+            double[] mas = new double[n];
+            for (i = 0; i < n; i++)
+            {
+                Console.WriteLine("введите оценку N" + (i + 1));
+                mas[i] = Convert.ToDouble(Console.ReadLine());
+            }
+            double temp, sum = 0;
+            for (i = 0; i < n; i++)  //сортировка массива методом пузырька
+            {
+                for (j = i + 1; j < n; j++)
+                {
+                    if (mas[i] > mas[j])
+                    {
+                        temp = mas[i];
+                        mas[i] = mas[j];
+                        mas[j] = temp;
+                    }
+                }
+            }
+            Console.WriteLine();
+            for (i = 0; i < n; i++) Console.Write(mas[i] + "  ");
+
+            //if (mas[0] == mas[1]) mas[0] = 0;
+            mas[0] = 0;
+            //if (mas[n-1] == mas[n-2]) mas[n-1] = 0;
+            mas[n - 1] = 0;
+            Console.WriteLine();
+            for (i = 0; i < n; i++) Console.Write(mas[i] + "  ");
+
+            for (i = 0; i < n; i++)
+            {
+                if (mas[i] != 0)
+                {
+                    sum = sum + mas[i];
+                    count++;
+                }
+            }
+            sum = sum / count;
+            Console.WriteLine();
+            Console.WriteLine("среднее арифметическое оценок - " + sum);
+            Console.WriteLine("среднее арифметическое оценок - " + sum.ToString("0.0"));
+        }
+        public static void num18()
+        {
+            //2. Получить таблицу температур по Цельсию от 0 до 100 градусов и их эквивалентов по шкале Фаренгейта, используя для перевода формулу
+            int t = 0;
+            int i;
+            for (i = 0; i <= 100; i++)
+            {
+                t = 9 / 5 * i + 32;
+                Console.WriteLine(i + "градусов по Цельсю=" + t + "градусов по Фаренгейту");
+            }
+        }
+        public static void num19()
+        {
+            //3. Даны две фамилии. Определить, какая из них длиннее.
+            Console.WriteLine("Введите фамилию 1");
+            string a = Console.ReadLine();
+            Console.WriteLine("Введите фамилию 2");
+            string b = Console.ReadLine();
+            {
+                if (a.Length > b.Length) Console.WriteLine("По длине больше 1 фамилия");
+                if (a.Length < b.Length) Console.WriteLine("По длине больше 2 фамилия");
+                if (a.Length == b.Length) Console.WriteLine("Фамилии равны по длине");
+            }
+            Console.ReadLine();
+        }
+        public static void num20()
+        {
+            //4. Дано слово из четного числа букв. Поменять местами его половины. Задачу решить двумя способами:
+            Console.WriteLine("Введите слово из четного числа букв");
+            string a = Console.ReadLine();
+            string b = "";
+            int i;
+            if (a.Length % 2 == 0)
+            {
+                int len = a.Length / 2;
+                for (i = len + 1; i <= a.Length; i++)
+                {
+                    b = b + a[i - 1];
+                }
+                for (i = 1; i <= len; i++)
+                {
+                    b = b + a[i - 1];
+                }
+                Console.WriteLine("Способ 1 - " + b);
+
+                Console.WriteLine("Способ 2 - " + a.Substring(a.Length / 2) + a.Substring(0, a.Length / 2));
+                Console.WriteLine("Способ 2 - " + b);
+            }
+            else Console.WriteLine("Ошибка: вы введи слово из нечетного числа букв");
+        }
+        public static void num21()
+        {
+            //5. Подсчитать количество гласных букв в строке, введенной с экрана.
+            Console.WriteLine("Количество гласных букв в строке");
+            char[] glasnie = new char[20] { 'а', 'о', 'и', 'е', 'ё', 'э', 'ы', 'у', 'ю', 'я', 'А', 'О', 'И', 'Е', 'Ё', 'Э', 'Ы', 'У', 'Ю', 'Я' };
+
+            string str = ("Ёжик дома");
+            int count = 0;
+            for (int i = 0; i < str.Length; i++)
+            {
+                for (int j = 0; j < glasnie.Length; j++)
+                {
+                    if (glasnie[j] == str[i]) { count++; }
+                }
+            }
+            Console.WriteLine(count);
+        }
+        public static void num22()
+        {
+            // 1.Даны два прямоугольника, стороны которых параллельны или перпендикулярны осям координат. Известны координаты левого нижнего угла каждого из них и длины их сторон. Найти координаты левого нижнего и правого верхнего углов минимального прямоугольника, содержащего указанные прямоугольники.
+            int xl1, yl1, xr1, yr1, a1, b1;  //координаты первого прямоугольника
+
+            int xl2, yl2, xr2, yr2, a2, b2; //координаты второго прямоугольника
+
+            int xl3, yl3, xr3, yr3;  //координаты результата
+
+            Console.WriteLine("Первый прямоугольник");
+            Console.WriteLine("Введите X левого нижнего угла "); xl1 = int.Parse(Console.ReadLine());
+            Console.WriteLine("Введите Y левого нижнего угла "); yl1 = int.Parse(Console.ReadLine());
+            Console.WriteLine("длина"); a1 = int.Parse(Console.ReadLine());
+            Console.WriteLine("высота"); b1 = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Второй прямоугольник");
+            Console.WriteLine("Введите X левого нижнего угла "); xl2 = int.Parse(Console.ReadLine());
+            Console.WriteLine("Введите Y левого нижнего угла "); yl2 = int.Parse(Console.ReadLine());
+            Console.WriteLine("длина"); a2 = int.Parse(Console.ReadLine());
+            Console.WriteLine("высота"); b2 = int.Parse(Console.ReadLine());
+
+            if (xl1 + a1 > xl2 + a2)
+            {
+                xl3 = xl2;
+                xr3 = xl1 + a1;
+            }
+            else
+            {
+                xl3 = xl1;
+                xr3 = xl2 + a2;
+            }
+            if (yl1 + b1 > yl2 + b2)
+            {
+                yl3 = yl2;
+                yr3 = yl1 + b1;
+            }
+            else
+            {
+                yl3 = yl1;
+                yr3 = yl2 + b2;
+            }
+            Console.WriteLine("Координаты правого верхнего угла общего прямоугольника x=" + xr3 + " y=" + yr3);
+            Console.WriteLine("Координаты левого нижнего угла общего прямоугольника x=" + xl3 + " y=" + yl3);
+        }
+        public static void num23()
+        {
+            //2. Известны площади круга и квадрата. Определить:
+
+            Console.Write("Введите площадь круга: ");
+            double S1 = Convert.ToDouble(Console.ReadLine());
+
+            Console.WriteLine();
+            Console.Write("Введите площадь квадрата: ");
+            double S2 = Convert.ToDouble(Console.ReadLine());
+
+            double Diametr = Math.Sqrt(S1 / Math.PI) * 2;
+            double Diagonal = Math.Sqrt(S2 * 2);
+            double Side = Math.Sqrt(S2);
+
+            if (Diametr >= Diagonal)
+            {
+                Console.WriteLine();
+                Console.WriteLine("Квадрат поместится в круге");
+            }
+
+            else
+            {
+                Console.WriteLine();
+                Console.WriteLine("Квадрат не поместится в круге");
+            }
+            if (Diametr <= Side)
+                Console.WriteLine("Круг поместится в квадрате");
+
+            else
+                Console.WriteLine("Круг не поместится в квадрате");
+        }
+        public static void num24()
+        {
+            //3. Записать условие, которое является истинным, когда:
+            int x;
+            Console.Write("Введите целое число: ");
+            x = int.Parse(Console.ReadLine());
+            if ((x % 2 == 0) | (x % 3 == 0)) Console.WriteLine("число кратно двум или трём");
+            if ((x % 3 != 0) & (x % 10 == 0)) Console.WriteLine("число не кратно трём и оканчивается на 0");
+        }
+        public static void num25()
+        {
+            //4. Даны два прямоугольника, стороны которых параллельны или перпендикулярны осям координат. Известны координаты левого нижнего угла каждого из них и длины их сторон. Один из прямоугольников назовем первым, другой — вторым.
+            int xl1, yl1, h1, l1;  //координаты первого прямоугольника
+
+            int xl2, yl2, h2, l2; //координаты второго прямоугольника
+
+            Console.WriteLine("Первый прямоугольник");
+            Console.WriteLine("Введите X левого нижнего угла "); xl1 = int.Parse(Console.ReadLine());
+            Console.WriteLine("Введите Y левого нижнего угла "); yl1 = int.Parse(Console.ReadLine());
+            Console.WriteLine("высота"); h1 = int.Parse(Console.ReadLine());
+            Console.WriteLine("длина"); l1 = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Второй прямоугольник");
+            Console.WriteLine("Введите X левого нижнего угла "); xl2 = int.Parse(Console.ReadLine());
+            Console.WriteLine("Введите Y левого нижнего угла "); yl2 = int.Parse(Console.ReadLine());
+            Console.WriteLine("высота"); h2 = int.Parse(Console.ReadLine());
+            Console.WriteLine("длина"); l2 = int.Parse(Console.ReadLine());
+
+            if (((xl1 + l1 <= xl2) | (xl1 >= xl2 + l2)) & ((yl1 + h1 <= yl2) | (yl1 >= yl2 + h2)))
+                Console.WriteLine("Прямоугольники не пересекаются");
+            else if ((xl1 == xl2) & (yl1 == yl2) & (h1 == h2) & (l1 == l2))
+                Console.WriteLine("Прямоугольники совпадают");
+            else if ((xl1 >= xl2) & (xl1 + l1 <= xl2 + l2) & (yl1 >= yl2) & (yl1 + h1 <= yl2 + h2))
+            {
+                Console.WriteLine("Прямоугольники не пересекаются");
+                Console.WriteLine("1-ый прямоугольник принадлежит 2-ому");
+            }
+            else if ((xl2 >= xl1) & (xl2 + l2 <= xl1 + l1) & (yl2 >= yl1) & (yl2 + h2 <= yl1 + h1))
+            {
+                Console.WriteLine("Прямоугольники не пересекаются");
+                Console.WriteLine("2-ой прямоугольник принадлежит 1-ому");
+            }
+            else
+                Console.WriteLine("Прямоугольники пересекаются ");
+        }
+        public static void num26()
+        {
+            //5. Определить, является ли заданное шестизначное число счастливым. (Счастливым называют такое шестизначное число, что сумма его первых трех цифр равна сумме его последних трех цифр).
+            Console.WriteLine("Введите шестизначное число");
+
+            int x = int.Parse(Console.ReadLine());
+            int sum1 = 0, sum2 = 0, i, a, count = 0;
+            if ((x >= 100000) & (x <= 999999))
+            {
+                for (i = 0; x > 0; x /= 10)
+                {
+                    a = x % 10; //это находим цифру
+                    count = count + 1;
+                    if (count <= 3)
+                        sum1 = sum1 + a;
+                    else sum2 = sum2 + a;
+                }
+                if (sum1 == sum2) Console.WriteLine("число счастливое, сумма первых трех и последних цифр равны - " + sum1);
+                else Console.WriteLine("число не счастливое");
+            }
+            else Console.WriteLine("вы ввели не шестизначное число");
+
+        }
+    }
+}
